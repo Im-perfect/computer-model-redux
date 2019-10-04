@@ -15,6 +15,15 @@ class App extends React.Component {
     })
   }
 
+  addComputer = () => {
+    this.props.dispatch({
+      type: 'ADD_COMPUTER',
+      payload: {
+        ...this.state.selectedComputer
+      }
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -27,6 +36,7 @@ class App extends React.Component {
             </option>
           ))}
         </select>
+        <button onClick={this.addComputer}>ADD</button>
       </div>
     );
   }
