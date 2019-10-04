@@ -8,10 +8,17 @@ class App extends React.Component {
     selectedComputer:{}
   }
 
+  updateSelection = event => {
+    console.log(event.target.selectedIndex)
+    this.setState({
+      selectedComputer: this.props.computers[event.target.selectedIndex-1]
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <select>
+        <select onChange={this.updateSelection}>
           <option value="">-- pick a model --</option>
           {this.props.computers.map(computer => (
             //there's no id in the data, generate a random one
