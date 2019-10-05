@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { connect } from "react-redux";
+import ModelDetails from "./modelDetails";
 
 class App extends React.Component {
   state = {
@@ -27,7 +28,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
+        {this.props.addedComputers.length
+          ? this.props.addedComputers.map(model => (
+              <ModelDetails model={model} />
+            ))
+          : ""}
+
         <select
           onChange={this.updateSelection}
           value={`${this.state.selectedComputer.name} (${this.state.selectedComputer.year})`}
