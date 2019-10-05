@@ -31,7 +31,8 @@ class App extends React.Component {
       <div>
         {this.props.addedComputers.length
           ? this.props.addedComputers.map(model => (
-              <ModelDetails model={model} />
+            //there's no id in the data, generate a random key
+              <ModelDetails model={model} key={Math.round(Math.random() * 10000)}/>
             ))
           : ""}
 
@@ -41,7 +42,7 @@ class App extends React.Component {
         >
           <option value="">-- pick a model --</option>
           {this.props.computers.map(computer => (
-            //there's no id in the data, generate a random one
+            //there's no id in the data, generate a random key
             <option
               value={`${computer.name} (${computer.year})`}
               key={Math.round(Math.random() * 10000)}
