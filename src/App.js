@@ -28,12 +28,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <select onChange={this.updateSelection}>
+        <select
+          onChange={this.updateSelection}
+          value={`${this.state.selectedComputer.name} (${this.state.selectedComputer.year})`}
+        >
           <option value="">-- pick a model --</option>
           {this.props.computers.map(computer => (
             //there's no id in the data, generate a random one
             <option
-              value={computer.name}
+              value={`${computer.name} (${computer.year})`}
               key={Math.round(Math.random() * 10000)}
             >
               {computer.name} ({computer.year})
