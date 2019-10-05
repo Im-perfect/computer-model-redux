@@ -3,26 +3,27 @@ import "./App.css";
 import { connect } from "react-redux";
 
 class App extends React.Component {
-
   state = {
-    selectedComputer:{}
-  }
+    selectedComputer: {}
+  };
 
   updateSelection = event => {
-    console.log(event.target.selectedIndex)
-    this.setState({
-      selectedComputer: this.props.computers[event.target.selectedIndex-1]
-    })
-  }
+    // console.log(event.target.selectedIndex);
+    if (event.target.selectedIndex !== 0) {
+      this.setState({
+        selectedComputer: this.props.computers[event.target.selectedIndex - 1]
+      });
+    }
+  };
 
   addComputer = () => {
     this.props.dispatch({
-      type: 'ADD_COMPUTER',
+      type: "ADD_COMPUTER",
       payload: {
         ...this.state.selectedComputer
       }
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -31,7 +32,10 @@ class App extends React.Component {
           <option value="">-- pick a model --</option>
           {this.props.computers.map(computer => (
             //there's no id in the data, generate a random one
-            <option value={computer.name} key={Math.round(Math.random()*10000)}>
+            <option
+              value={computer.name}
+              key={Math.round(Math.random() * 10000)}
+            >
               {computer.name} ({computer.year})
             </option>
           ))}
@@ -44,7 +48,8 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    computers: state
+    computers: state.computers,
+    addedComputers: state.addedComputers
   };
 };
 export default connect(mapStateToProps)(App);
